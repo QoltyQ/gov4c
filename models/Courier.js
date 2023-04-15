@@ -15,6 +15,9 @@ const Courier = sequelize.define("Courier", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  company_id: {
+    type: DataTypes.INTEGER,
+  },
   status: {
     type: DataTypes.STRING,
     defaultValue: "inactive",

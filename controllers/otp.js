@@ -1,17 +1,17 @@
 const OTP = require("../models/OTP");
 
 const sendOTP = async (req, res) => {
-  const { order_id, otp } = req.body;
+  const { order_num, otp } = req.body;
   const newOTP = await OTP.create({
-    order_id,
+    order_num,
     otp,
   });
   res.status(200).send(newOTP);
 };
 
 const verifyOTP = async (req, res) => {
-  const { order_id, otp } = req.body;
-  const otpFromDB = await OTP.findOne({ where: { order_id } });
+  const { order_num, otp } = req.body;
+  const otpFromDB = await OTP.findOne({ where: { order_num } });
   if (otpFromDB.otp === otp) {
     res.status(200).send("OK");
   } else {

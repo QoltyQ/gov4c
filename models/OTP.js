@@ -7,7 +7,7 @@ const OTP = sequelize.define("OTP", {
     primaryKey: true,
     autoIncrement: true,
   },
-  order_id: {
+  order_num: {
     type: DataTypes.STRING(100),
     allowNull: false,
     unique: true,

@@ -7,12 +7,24 @@ const Request = sequelize.define("Request", {
     primaryKey: true,
     autoIncrement: true,
   },
+  order_num: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false,
+  },
+  client_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  representative: {
+    type: DataTypes.STRING
+  },
   address_sc: {
-    type: DataTypes.TEXT,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   address_deliv: {
-    type: DataTypes.TEXT,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   price: {

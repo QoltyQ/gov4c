@@ -1,12 +1,16 @@
+const { generateOTP } = require("../helper/helper");
 const Order = require("../models/Order");
+const OTP = require("../models/OTP")
 
 const createOrder = async (req, res) => {
-  const { status, courier_id, client_id, address_sc, address_deliv, price } =
+  const { status, order_num, courier_id, client_id, representative, address_sc, address_deliv, price } =
     req.body;
   const newOrder = await Order.create({
     status,
+    order_num,
     courier_id,
     client_id,
+    representative,
     address_sc,
     address_deliv,
     price,
@@ -27,13 +31,15 @@ const getOrderById = async (req, res) => {
 
 const updateOrder = async (req, res) => {
   const { id } = req.params;
-  const { status, courier_id, client_id, address_sc, address_deliv, price } =
+  const { status, order_num, courier_id, client_id, representative, address_sc, address_deliv, price } =
     req.body;
   const updatedOrder = await Order.update(
     {
       status,
+      order_num,
       courier_id,
       client_id,
+      representative,
       address_sc,
       address_deliv,
       price,
@@ -49,10 +55,31 @@ const deleteOrder = async (req, res) => {
   res.status(200).send("Order deleted");
 };
 
+const passOrder = async (req, res) =>{
+  const { order_id } = req.query
+  const curOrder = await Order.findByPk(order_id);
+  const { order_num, status } = curOrder 
+
+  await curOrder.update({
+    status: (status+1),
+  });
+
+  const otp = generateOTP()
+  const curOTP = await OTP.findOne({where: { order_num }})
+  console.log("prev otp", curOTP.otp);
+  await curOTP.update({
+    otp: otp,
+  })
+  console.log("new otp", otp);
+
+  res.send(curOrder);
+}
+
 module.exports = {
   createOrder,
   getOrders,
   getOrderById,
   updateOrder,
   deleteOrder,
+  passOrder
 };
