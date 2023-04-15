@@ -3,6 +3,8 @@ const app = express();
 const cors = require("cors");
 const db = require("./db");
 const authRoute = require("./routes/auth");
+const requestsRoute = require("./routes/requests");
+
 
 require("dotenv").config();
 
@@ -10,6 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/", authRoute);
+app.use('/requests', requestsRoute)
 
 try {
   db.sync();

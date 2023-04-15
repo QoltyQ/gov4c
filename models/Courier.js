@@ -27,6 +27,10 @@ const Courier = sequelize.define("Courier", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  city: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  }
 });
 
 module.exports = Courier;
