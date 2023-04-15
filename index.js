@@ -2,14 +2,20 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const db = require("./db");
-const authRoute = require("./routes/auth");
+const auth = require("./routes/auth");
+const otp = require("./routes/otp");
+const order = require("./routes/order");
+const sc = require("./routes/sc");
 
 require("dotenv").config();
 
 app.use(express.json());
 app.use(cors());
 
-app.use("/", authRoute);
+app.use("/", auth);
+app.use("/otp", otp);
+app.use("/order", order);
+app.use("/servicecenter", sc);
 
 try {
   db.sync();
