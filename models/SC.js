@@ -1,28 +1,28 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../db");
 
-const Request = sequelize.define("Request", {
+const SC = sequelize.define("SC", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  address_sc: {
-    type: DataTypes.TEXT,
+  login: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
-  address_deliv: {
-    type: DataTypes.TEXT,
+  password: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
-  price: {
+  address: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  status: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 
-module.exports = Request;
+module.exports = SC;
