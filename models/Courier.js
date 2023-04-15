@@ -15,6 +15,18 @@ const Courier = sequelize.define("Courier", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  status: {
+    type: DataTypes.STRING,
+    defaultValue: "inactive",
+  },
+  name: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 module.exports = Courier;
