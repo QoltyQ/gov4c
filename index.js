@@ -6,7 +6,8 @@ const auth = require("./routes/auth");
 const otp = require("./routes/otp");
 const order = require("./routes/order");
 const sc = require("./routes/sc");
-const requests = require('./routes/requests');
+const requests = require("./routes/requests");
+const token = require("./routes/token");
 
 require("dotenv").config();
 
@@ -18,6 +19,7 @@ app.use("/otp", otp);
 app.use("/order", order);
 app.use("/servicecenter", sc);
 app.use("/requests", requests);
+app.use("/token", token);
 
 try {
   db.sync();
