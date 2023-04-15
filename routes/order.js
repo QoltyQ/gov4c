@@ -6,12 +6,14 @@ const {
   getOrderById,
   updateOrder,
   deleteOrder,
+  passOrder,
 } = require("../controllers/order");
 
+router.post('/pass', passOrder);
 router.post("/create", createOrder);
 router.get("/", getOrders);
-router.get("/:id", getOrderById);
 router.put("/update/:id", updateOrder);
 router.delete("/delete/:id", deleteOrder);
+router.get("/:id", getOrderById);
 
 module.exports = router;
